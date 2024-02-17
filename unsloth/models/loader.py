@@ -14,6 +14,7 @@
 
 from .llama import FastLlamaModel, logger
 from .mistral import FastMistralModel
+from .mixtral import FastMixtralModel
 from transformers import AutoConfig
 from transformers import __version__ as transformers_version
 from peft import PeftConfig, PeftModel
@@ -60,7 +61,7 @@ def _get_model_name(model_name, load_in_4bit = True):
 pass
 
 
-class FastLanguageModel(FastLlamaModel):
+class FastLanguageModel(FastMixtralModel):
     @staticmethod
     def from_pretrained(
         model_name     = "unsloth/mistral-7b-bnb-4bit",
@@ -96,9 +97,10 @@ class FastLanguageModel(FastLlamaModel):
         pass
 
         model_type = model_config.model_type
-
-        if   model_type == "llama":   dispatch_model = FastLlamaModel
+        print(f"\n MODEL TYPE:{model_type} \n")
+        if   model_type == "llama":   dispatch_model = FastLlamaModel   
         elif model_type == "mistral": dispatch_model = FastMistralModel
+        elif model_type == "mixtral": dispatch_model = FastMixtralModel
         else:
             raise NotImplementedError(
                 f"Unsloth: {model_name} not supported yet!\n"\
