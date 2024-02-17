@@ -61,7 +61,7 @@ def _get_model_name(model_name, load_in_4bit = True):
 pass
 
 
-class FastLanguageModel(FastLlamaModel):
+class FastLanguageModel(FastMixtralModel):
     @staticmethod
     def from_pretrained(
         model_name     = "unsloth/mistral-7b-bnb-4bit",
