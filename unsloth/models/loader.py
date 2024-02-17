@@ -97,7 +97,7 @@ class FastLanguageModel(FastLlamaModel):
         pass
 
         model_type = model_config.model_type
-
+        print(f"\n MODEL TYPE:{model_type} \n")
         if   model_type == "llama":   dispatch_model = FastLlamaModel   
         elif model_type == "mistral": dispatch_model = FastMistralModel
         elif model_type == "mixtral": dispatch_model = FastMixtralModel
