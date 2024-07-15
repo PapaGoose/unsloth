@@ -303,7 +303,7 @@ def MixtralForCausalLM_fast_forward(
         shift_logits = logits[..., :-1, :].contiguous()
         shift_labels = labels[..., 1:].contiguous()
         # Flatten the tokens
-        shift_logits = shift_logits.view(-1, self.config.vocab_size)
+        # shift_logits = shift_logits.view(-1, self.config.vocab_size)
         shift_labels = shift_labels.view(-1)
         # Enable model parallelism
         shift_labels = shift_labels.to(shift_logits.device)
